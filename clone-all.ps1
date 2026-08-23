@@ -1,31 +1,47 @@
 # Clone / update the ComputerPets flagship, organs, and games.
 # Target: C:\Users\730ri\projects
+# Windows is case-insensitive: ComputerPets counts as computerpets.
 $ErrorActionPreference = "Stop"
 $Root = "C:\Users\730ri\projects"
 $Owner = "RicheyWorks"
 
-$Repos = Get-Content -Path (Join-Path $PSScriptRoot "repos.txt") | Where-Object { $_.Trim() -ne "" }
+$ReposFile = Join-Path $PSScriptRoot "repos.txt"
+if (-not (Test-Path -LiteralPath $ReposFile)) {
+    throw "repos.txt missing next to clone-all.ps1"
+}
+
+$Repos = Get-Content -Path $ReposFile | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
 
 New-Item -ItemType Directory -Force -Path $Root | Out-Null
-Write-Host "Installing ComputerPets ecosystem into $Root" -ForegroundColor Cyan
+Write-Host "Installing ComputerPets ecosystem into $Root ($($Repos.Count) repos)" -ForegroundColor Cyan
+
+function Get-ExistingDir {
+    param([string]$Root, [string]$Name)
+    Get-ChildItem -LiteralPath $Root -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -ieq $Name } |
+        Select-Object -First 1
+}
 
 $ok = 0
 $fail = @()
 
 foreach ($name in $Repos) {
-    $dest = Join-Path $Root $name
+    $existing = Get-ExistingDir -Root $Root -Name $name
     $url = "https://github.com/$Owner/$name.git"
     try {
-        if (Test-Path (Join-Path $dest ".git")) {
-            Write-Host "pull  $name" -ForegroundColor Yellow
-            git -C $dest pull --ff-only
-        } elseif (Test-Path $dest) {
-            Write-Host "skip  $name (folder exists, not a git repo)" -ForegroundColor DarkYellow
+        if ($null -ne $existing -and (Test-Path (Join-Path $existing.FullName ".git"))) {
+            Write-Host "pull  $($existing.Name)" -ForegroundColor Yellow
+            git -C $existing.FullName pull --ff-only
+            $ok++
+        } elseif ($null -ne $existing) {
+            Write-Host "skip  $($existing.Name) (folder exists, not a git repo)" -ForegroundColor DarkYellow
+            $ok++
         } else {
+            $dest = Join-Path $Root $name
             Write-Host "clone $name" -ForegroundColor Green
             git clone --depth 1 $url $dest
+            $ok++
         }
-        $ok++
     } catch {
         Write-Host "FAIL  $name : $_" -ForegroundColor Red
         $fail += $name

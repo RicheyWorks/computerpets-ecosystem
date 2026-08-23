@@ -8,17 +8,17 @@ This repository is the map, the clone script for `C:\Users\730ri\projects`, and 
 
 ## Clone everything (Windows)
 
-Git and GitHub access required. In **PowerShell**:
+You already have `C:\Users\730ri\projects`. The map folder is **not** there yet — clone it first, then run the script. Paste this whole block in PowerShell:
 
 ```powershell
-New-Item -ItemType Directory -Force -Path C:\Users\730ri\projects | Out-Null
 Set-Location C:\Users\730ri\projects
 git clone https://github.com/RicheyWorks/computerpets-ecosystem.git
 Set-Location .\computerpets-ecosystem
 .\clone-all.ps1
 ```
 
-`clone-all.ps1` pulls the flagship plus every organ below into `C:\Users\730ri\projects\<repo>`. Re-run it to `git pull` updates.
+That fills `C:\Users\730ri\projects` with the flagship, 30 organs, and 30 games. Your existing `ComputerPets` folder is reused (Windows does not care about case). Re-run `.\clone-all.ps1` later to pull updates.
+
 
 ## Organs
 
