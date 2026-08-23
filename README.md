@@ -82,6 +82,56 @@ Set-Location .\computerpets-ecosystem
 | Forensics | [computerpets-forensics](https://github.com/RicheyWorks/computerpets-forensics) | Crash log analyzer |
 | Stampede | [computerpets-stampede](https://github.com/RicheyWorks/computerpets-stampede) | 10k-pet load test |
 
+
+## Games
+
+Thirty companion games. Same canon. None of them replace the desktop walk.
+
+### Combat & action
+
+| Product | Repo | Engine |
+| --- | --- | --- |
+| Arena | [computerpets-arena](https://github.com/RicheyWorks/computerpets-arena) | Unity / WebGL auto-battler |
+| Siege | [computerpets-siege](https://github.com/RicheyWorks/computerpets-siege) | Desktop tower defense |
+| Rogue | [computerpets-rogue](https://github.com/RicheyWorks/computerpets-rogue) | Godot action roguelike |
+| Raid | [computerpets-raid](https://github.com/RicheyWorks/computerpets-raid) | Spring WebSocket co-op |
+| Horde | [computerpets-horde](https://github.com/RicheyWorks/computerpets-horde) | Godot bullet-heaven |
+| Shadow | [computerpets-shadow](https://github.com/RicheyWorks/computerpets-shadow) | Godot stealth heist |
+| Dodge | [computerpets-dodge](https://github.com/RicheyWorks/computerpets-dodge) | Unity party dodgeball |
+
+### Skills, races, arcade
+
+| Product | Repo | Engine |
+| --- | --- | --- |
+| Agility | [computerpets-agility](https://github.com/RicheyWorks/computerpets-agility) | Godot physics runner |
+| Derby | [computerpets-derby](https://github.com/RicheyWorks/computerpets-derby) | Unreal / WebGL racing |
+| Cadence | [computerpets-cadence](https://github.com/RicheyWorks/computerpets-cadence) | Godot rhythm |
+| Encore | [computerpets-encore](https://github.com/RicheyWorks/computerpets-encore) | React / Web Audio karaoke |
+| Tilt | [computerpets-tilt](https://github.com/RicheyWorks/computerpets-tilt) | Phaser pinball |
+| Soar | [computerpets-soar](https://github.com/RicheyWorks/computerpets-soar) | Three.js flight |
+| Spire | [computerpets-spire](https://github.com/RicheyWorks/computerpets-spire) | Phaser tower climb |
+| Cascade | [computerpets-cascade](https://github.com/RicheyWorks/computerpets-cascade) | Phaser match-3 RPG |
+| Gambit | [computerpets-gambit](https://github.com/RicheyWorks/computerpets-gambit) | Next.js CCG |
+| Thread | [computerpets-thread](https://github.com/RicheyWorks/computerpets-thread) | Godot maze puzzle |
+
+### World, idle, cozy
+
+| Product | Repo | Engine |
+| --- | --- | --- |
+| Delve | [computerpets-delve](https://github.com/RicheyWorks/computerpets-delve) | Spring idle expeditions |
+| Hatchery | [computerpets-hatchery](https://github.com/RicheyWorks/computerpets-hatchery) | React/Canvas breeding |
+| Lure | [computerpets-lure](https://github.com/RicheyWorks/computerpets-lure) | Phaser fishing |
+| Kettle | [computerpets-kettle](https://github.com/RicheyWorks/computerpets-kettle) | Unity cooking dash |
+| Cache | [computerpets-cache](https://github.com/RicheyWorks/computerpets-cache) | React Native AR hunt |
+| Runway | [computerpets-runway](https://github.com/RicheyWorks/computerpets-runway) | Three.js fashion |
+| Hearth | [computerpets-hearth](https://github.com/RicheyWorks/computerpets-hearth) | Phaser village |
+| Acre | [computerpets-acre](https://github.com/RicheyWorks/computerpets-acre) | Unity farm |
+| Orbit | [computerpets-orbit](https://github.com/RicheyWorks/computerpets-orbit) | Vue/Pixi idle space |
+| Isle | [computerpets-isle](https://github.com/RicheyWorks/computerpets-isle) | Unreal survival |
+| Inn | [computerpets-inn](https://github.com/RicheyWorks/computerpets-inn) | Unity tavern |
+| Quarry | [computerpets-quarry](https://github.com/RicheyWorks/computerpets-quarry) | Godot digging |
+| Dojo | [computerpets-dojo](https://github.com/RicheyWorks/computerpets-dojo) | Svelte idle gym |
+
 ## Doctrine
 
 1. The desktop walk is the main quest. Companion organs fail soft.

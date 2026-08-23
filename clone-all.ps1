@@ -1,43 +1,10 @@
-# Clone / update the ComputerPets flagship and all companion organs.
+# Clone / update the ComputerPets flagship, organs, and games.
 # Target: C:\Users\730ri\projects
 $ErrorActionPreference = "Stop"
 $Root = "C:\Users\730ri\projects"
 $Owner = "RicheyWorks"
 
-$Repos = @(
-    "computerpets",
-    "computerpets-ecosystem",
-    "computerpets-cortex",
-    "computerpets-gaze",
-    "computerpets-vox",
-    "computerpets-motion",
-    "computerpets-atelier",
-    "computerpets-companion",
-    "computerpets-bazaar",
-    "computerpets-studio",
-    "computerpets-console",
-    "computerpets-kennel",
-    "computerpets-minter",
-    "computerpets-steamgate",
-    "computerpets-visitation",
-    "computerpets-telemetry",
-    "computerpets-quests",
-    "computerpets-ledger",
-    "computerpets-twitch",
-    "computerpets-discord",
-    "computerpets-wallpaper",
-    "computerpets-nest",
-    "computerpets-overlay",
-    "computerpets-sdk",
-    "computerpets-lore",
-    "computerpets-babel",
-    "computerpets-bounty",
-    "computerpets-ballot",
-    "computerpets-patcher",
-    "computerpets-migrator",
-    "computerpets-forensics",
-    "computerpets-stampede"
-)
+$Repos = Get-Content -Path (Join-Path $PSScriptRoot "repos.txt") | Where-Object { $_.Trim() -ne "" }
 
 New-Item -ItemType Directory -Force -Path $Root | Out-Null
 Write-Host "Installing ComputerPets ecosystem into $Root" -ForegroundColor Cyan
