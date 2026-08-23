@@ -4,7 +4,8 @@ Thirty companion organs around the flagship overlay:
 
 **[RicheyWorks/computerpets](https://github.com/RicheyWorks/computerpets)** — virtual pets that live on your computer. Two hundred ten living kinds. Rui walks first.
 
-This repository is the map, the clone script for `C:\Users\730ri\projects`, and the naming source of truth.
+This repository is the map, the clone script for `C:\Users\730ri\projects`, and the naming source of truth. **Every organ and game has its own README** — job, first slice, architecture, Windows run, and canon rules.
+
 
 ## Clone everything (Windows)
 
