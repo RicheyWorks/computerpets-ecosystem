@@ -35,3 +35,6 @@ if (Test-Path (Join-Path $Map ".git")) {
 
 $cloneAll = Join-Path $Map "clone-all.ps1"
 & $cloneAll -TargetRoot $Root
+if ($LASTEXITCODE -ne 0) {
+    throw "Repository clone pass failed with exit code $LASTEXITCODE"
+}
