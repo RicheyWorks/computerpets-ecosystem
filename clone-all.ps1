@@ -1,8 +1,10 @@
 # Clone / update the ComputerPets flagship, organs, and games.
-# Target: C:\Users\730ri\projects
+# Target defaults to the current Windows user's projects folder.
 # Windows is case-insensitive: ComputerPets counts as computerpets.
+param([string]$TargetRoot = (Join-Path $env:USERPROFILE "projects"))
+
 $ErrorActionPreference = "Stop"
-$Root = "C:\Users\730ri\projects"
+$Root = $TargetRoot
 $Owner = "RicheyWorks"
 
 $ReposFile = Join-Path $PSScriptRoot "repos.txt"
@@ -23,6 +25,7 @@ function Get-ExistingDir {
 }
 
 $ok = 0
+$skipped = 0
 $fail = @()
 
 foreach ($name in $Repos) {
@@ -32,14 +35,20 @@ foreach ($name in $Repos) {
         if ($null -ne $existing -and (Test-Path (Join-Path $existing.FullName ".git"))) {
             Write-Host "pull  $($existing.Name)" -ForegroundColor Yellow
             git -C $existing.FullName pull --ff-only
+            if ($LASTEXITCODE -ne 0) {
+                throw "git pull failed with exit code $LASTEXITCODE"
+            }
             $ok++
         } elseif ($null -ne $existing) {
             Write-Host "skip  $($existing.Name) (folder exists, not a git repo)" -ForegroundColor DarkYellow
-            $ok++
+            $skipped++
         } else {
             $dest = Join-Path $Root $name
             Write-Host "clone $name" -ForegroundColor Green
             git clone --depth 1 $url $dest
+            if ($LASTEXITCODE -ne 0) {
+                throw "git clone failed with exit code $LASTEXITCODE"
+            }
             $ok++
         }
     } catch {
@@ -49,7 +58,7 @@ foreach ($name in $Repos) {
 }
 
 Write-Host ""
-Write-Host "Done. $ok / $($Repos.Count) ok. Root: $Root" -ForegroundColor Cyan
+Write-Host "Done. $ok / $($Repos.Count) ok; $skipped skipped. Root: $Root" -ForegroundColor Cyan
 if ($fail.Count -gt 0) {
     Write-Host ("Failed: " + ($fail -join ", ")) -ForegroundColor Red
     exit 1
