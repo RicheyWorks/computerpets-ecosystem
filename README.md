@@ -1,25 +1,41 @@
 # ComputerPets Ecosystem
 
-Thirty companion organs around the flagship overlay:
+**One map for the desktop pet, companion services, and games.**
 
-**[RicheyWorks/computerpets](https://github.com/RicheyWorks/computerpets)** — virtual pets that live on your computer. Two hundred ten living kinds. Rui walks first.
+Browse the ComputerPets project family and clone its repositories into a Windows workspace. The flagship is [ComputerPets](https://github.com/RicheyWorks/computerpets); this repository contains the map and Git helpers, rather than a playable pet or a running service.
 
-This repository is the map, the clone script for `C:\Users\730ri\projects`, and the naming source of truth. **Every organ and game has its own README** — job, first slice, architecture, Windows run, and canon rules.
+[Clone the workspace](#clone-the-workspace-windows) · [Companion services](#organs) · [Games](#games) · [Design rules](#doctrine) · [Repository manifest](repos.txt)
 
+## Status
 
-## Clone everything (Windows)
+| Area | Available here |
+| --- | --- |
+| Project map | Links and intended roles for 30 companion services and 30 games. |
+| Workspace tools | [clone-all.ps1](clone-all.ps1), [bootstrap.ps1](bootstrap.ps1), and the [repository manifest](repos.txt). |
+| Implementation | Check each project's README for its current stage. Many are design scaffolds; Siege has a web prototype. Map relationships describe intended connections. |
+| Validation | [Dependency-free clone-helper regression checks](tests/clone-all.Tests.ps1). |
 
-You already have `C:\Users\730ri\projects`. The map folder is **not** there yet — clone it first, then run the script. Paste this whole block in PowerShell:
+## Clone the workspace (Windows)
+
+Requires PowerShell, Git, and a GitHub account with access to these private repositories. Choose a target folder; existing Git checkouts receive fast-forward-only pulls, and existing non-Git folders are preserved and reported as skipped.
 
 ```powershell
-Set-Location C:\Users\730ri\projects
+$projectRoot = Join-Path $env:USERPROFILE 'projects'
+New-Item -ItemType Directory -Path $projectRoot -Force | Out-Null
+Set-Location $projectRoot
 git clone https://github.com/RicheyWorks/computerpets-ecosystem.git
 Set-Location .\computerpets-ecosystem
-.\clone-all.ps1
+.\clone-all.ps1 -TargetRoot $projectRoot
 ```
 
-That fills `C:\Users\730ri\projects` with the flagship, 30 organs, and 30 games. Your existing `ComputerPets` folder is reused (Windows does not care about case). Re-run `.\clone-all.ps1` later to pull updates.
+Re-run the final command to fetch updates. Windows folder matching is case-insensitive, so an existing `ComputerPets` checkout is reused. Git failures are reported and produce a nonzero exit; they are not counted as successful updates.
 
+```powershell
+# Review helper behavior without cloning or contacting GitHub.
+.\tests\clone-all.Tests.ps1
+```
+
+The manifest includes the flagship, this map, and the companion repositories. Cloning a scaffold does not install an app; use its README and design file to choose the next implementation slice.
 
 ## Organs
 
